@@ -12,11 +12,81 @@ primary_region = "iad"
   processes = ["app"]
 
 [env]
-  APP_ENV = "production"
-  APP_DEBUG = "false"
-  LOG_CHANNEL = "stderr"
-  SESSION_DRIVER = "database"
-  CACHE_DRIVER = "database"
+APP_NAME = "ST. GREGORY THE GREAT CATHOLIC CHAPLAINACY - UPSA"
+APP_ENV = "production"
+# APP_KEY is set via Fly secret
+APP_DEBUG = false
+APP_URL = "https://upsa-pax-romana.fly.dev"
+FRONTEND_URL = "https://upsa-pax-romana.fly.dev"
+CORS_ALLOWED_ORIGINS = "https://upsa-pax-romana.fly.dev"
+SANCTUM_STATEFUL_DOMAINS = "upsa-pax-romana.fly.dev"
+
+APP_LOCALE = "en"
+APP_FALLBACK_LOCALE = "en"
+APP_FAKER_LOCALE = "en_US"
+
+APP_MAINTENANCE_DRIVER = "file"
+# APP_MAINTENANCE_STORE=database
+
+PHP_CLI_SERVER_WORKERS = 4
+
+BCRYPT_ROUNDS = 12
+
+LOG_CHANNEL = "stderr"
+LOG_STACK = "single"
+# LOG_DEPRECATIONS_CHANNEL=null
+LOG_LEVEL = "info"
+
+DB_CONNECTION = "mysql"
+
+SESSION_DRIVER = "file"
+SESSION_LIFETIME = 30
+SESSION_ENCRYPT = false
+SESSION_PATH = "/"
+SESSION_DOMAIN = "upsa-pax-romana.fly.dev"
+SESSION_SECURE_COOKIE = true
+SESSION_SAME_SITE = "lax"
+SESSION_EXPIRE_ON_CLOSE = true
+
+BROADCAST_CONNECTION = "log"
+FILESYSTEM_DISK = "local"
+QUEUE_CONNECTION = "sync"
+
+CACHE_STORE = "file"
+CACHE_DRIVER = "file"
+# CACHE_PREFIX=
+
+MEMCACHED_HOST = "127.0.0.1"
+
+REDIS_CLIENT = "phpredis"
+REDIS_HOST = "127.0.0.1"
+REDIS_PASSWORD = "null"
+REDIS_PORT = 6379
+
+MAIL_MAILER = "resend"
+MAIL_SCHEME = "null"
+MAIL_HOST = "smtp.resend.com"
+MAIL_PORT = 587
+MAIL_USERNAME = "resend"
+MAIL_PASSWORD = "null"
+MAIL_ENCRYPTION = "tls"
+MAIL_FROM_ADDRESS = "no-reply@myhostelsystem.site"
+MAIL_FROM_NAME = "${APP_NAME}"
+
+RESEND_API_KEY = "re_F2q6bcW1_5Q9jGgxGPpXtMuvhhNBhpi7w"
+
+AWS_ACCESS_KEY_ID = ""
+AWS_SECRET_ACCESS_KEY = ""
+AWS_DEFAULT_REGION = "us-east-1"
+AWS_BUCKET = ""
+AWS_USE_PATH_STYLE_ENDPOINT = false
+
+VITE_APP_NAME = "${APP_NAME}"
+
+PAYSTACK_PUBLIC_KEY = "pk_test_f781e6fb2c3fa71e7488dafa0f41ad98db909298"
+PAYSTACK_SECRET_KEY = "sk_test_6d181d5909fe482986c85ba5df549d97c9a3f28a"
+PAYSTACK_PAYMENT_URL = "https://api.paystack.co"
+MERCHANT_EMAIL = "kwadjofrancis004@gmail.com"
 
 [[vm]]
   memory = "256mb"

@@ -1,7 +1,7 @@
 /* eslint-disable no-empty */
 // Resolve API base URL with sensible fallback for dev
 const RAW_BASE = import.meta.env.VITE_API_BASE_URL
-const BASE_URL = (RAW_BASE && RAW_BASE.trim() ? RAW_BASE.trim() : 'http://localhost:8000/api').replace(/\/$/, '')
+const BASE_URL = (RAW_BASE && RAW_BASE.trim() ? RAW_BASE.trim() : 'https://upsa-pax-romana.fly.dev/api').replace(/\/$/, '')
 const LARAVEL_BASE_URL = BASE_URL
 
 // Utility function to construct full image URLs
