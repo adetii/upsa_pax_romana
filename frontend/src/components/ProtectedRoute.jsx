@@ -11,7 +11,7 @@ export default function ProtectedRoute({ children, requiredRole = null }) {
   useEffect(() => {
     if (!authLoading) {
       if (!user) {
-        navigate('/admin/login')
+        navigate('/admin/entry_255081')
         return
       }
 

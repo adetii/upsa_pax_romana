@@ -107,7 +107,7 @@ export default function AdminProfile() {
 
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
+    <div className="min-h-screen bg-linear-to-br from-slate-50 via-blue-50 to-indigo-50">
       {/* Profile loading overlay (corner) */}
       <LoadingOverlay visible={authLoading} message="Loading your profile..." position="top-right" />
       {/* Header with glassmorphism */}
@@ -115,11 +115,11 @@ export default function AdminProfile() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center py-4 sm:py-6 gap-3 sm:gap-0">
             <div className="flex items-center">
-              <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-2xl flex items-center justify-center mr-3 sm:mr-4 shadow-lg flex-shrink-0">
+              <div className="w-10 h-10 sm:w-12 sm:h-12 bg-linear-to-br from-blue-500 to-indigo-600 rounded-2xl flex items-center justify-center mr-3 sm:mr-4 shadow-lg shrink-0">
                 <User className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
               </div>
               <div>
-                <h1 className="text-xl sm:text-2xl lg:text-3xl font-bold bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent">My Profile</h1>
+                <h1 className="text-xl sm:text-2xl lg:text-3xl font-bold bg-linear-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent">My Profile</h1>
                 <p className="mt-0.5 sm:mt-1 text-xs sm:text-sm text-gray-600">Manage your account settings</p>
               </div>
             </div>
@@ -138,7 +138,7 @@ export default function AdminProfile() {
                   <button
                     onClick={handleSave}
                     disabled={saving}
-                    className="flex-1 sm:flex-none flex items-center justify-center px-4 sm:px-6 py-2 bg-gradient-to-r from-green-600 to-emerald-600 text-white rounded-xl hover:from-green-700 hover:to-emerald-700 transition-all duration-300 shadow-lg font-semibold disabled:opacity-50 text-sm"
+                    className="flex-1 sm:flex-none flex items-center justify-center px-4 sm:px-6 py-2 bg-linear-to-r from-green-600 to-emerald-600 text-white rounded-xl hover:from-green-700 hover:to-emerald-700 transition-all duration-300 shadow-lg font-semibold disabled:opacity-50 text-sm"
                   >
                     {saving ? (
                       <>
@@ -157,7 +157,7 @@ export default function AdminProfile() {
               {!editMode && (
                 <button
                   onClick={() => setEditMode(true)}
-                  className="flex items-center justify-center px-4 sm:px-6 py-2 sm:py-3 bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-xl hover:from-blue-700 hover:to-indigo-700 transition-all duration-300 shadow-lg hover:shadow-xl font-semibold text-sm"
+                  className="flex items-center justify-center px-4 sm:px-6 py-2 sm:py-3 bg-linear-to-r from-blue-600 to-indigo-600 text-white rounded-xl hover:from-blue-700 hover:to-indigo-700 transition-all duration-300 shadow-lg hover:shadow-xl font-semibold text-sm"
                 >
                   <Edit2 className="w-4 h-4 mr-1.5" />
                   Edit
@@ -176,7 +176,7 @@ export default function AdminProfile() {
               onClick={() => setActiveTab('profile')}
               className={`flex-1 flex items-center justify-center px-3 sm:px-6 py-2 sm:py-3 rounded-lg sm:rounded-xl font-semibold transition-all duration-300 text-sm sm:text-base ${
                 activeTab === 'profile'
-                  ? 'bg-gradient-to-r from-blue-600 to-indigo-600 text-white shadow-lg'
+                  ? 'bg-linear-to-r from-blue-600 to-indigo-600 text-white shadow-lg'
                   : 'text-gray-600 hover:bg-gray-50'
               }`}
             >
@@ -188,7 +188,7 @@ export default function AdminProfile() {
               onClick={() => setActiveTab('security')}
               className={`flex-1 flex items-center justify-center px-3 sm:px-6 py-2 sm:py-3 rounded-lg sm:rounded-xl font-semibold transition-all duration-300 text-sm sm:text-base ${
                 activeTab === 'security'
-                  ? 'bg-gradient-to-r from-blue-600 to-indigo-600 text-white shadow-lg'
+                  ? 'bg-linear-to-r from-blue-600 to-indigo-600 text-white shadow-lg'
                   : 'text-gray-600 hover:bg-gray-50'
               }`}
             >
@@ -203,11 +203,11 @@ export default function AdminProfile() {
             {/* Profile Card */}
             <div className="lg:col-span-1">
               <div className="bg-white rounded-2xl sm:rounded-3xl shadow-xl border border-gray-100 p-5 sm:p-6 lg:p-8 relative overflow-hidden">
-                <div className="absolute top-0 right-0 w-24 h-24 sm:w-32 sm:h-32 bg-gradient-to-br from-blue-500/20 to-purple-500/20 rounded-full -mr-12 sm:-mr-16 -mt-12 sm:-mt-16"></div>
+                <div className="absolute top-0 right-0 w-24 h-24 sm:w-32 sm:h-32 bg-linear-to-br from-blue-500/20 to-purple-500/20 rounded-full -mr-12 sm:-mr-16 -mt-12 sm:-mt-16"></div>
                 <div className="relative">
                   <div className="flex flex-col items-center mb-5 sm:mb-6">
                     <div className="text-center mt-4">
-                      <h2 className="text-xl sm:text-2xl font-bold text-gray-900 break-words">{user?.name || '—'}</h2>
+                      <h2 className="text-xl sm:text-2xl font-bold text-gray-900 wrap-break-words">{user?.name || '—'}</h2>
                       <p className="text-xs sm:text-sm text-gray-500 mt-1 break-all">{user?.email || '—'}</p>
                       <div className="mt-3">
                         {user?.role && getRoleBadge(user.role)}
@@ -216,7 +216,7 @@ export default function AdminProfile() {
                   </div>
 
                   <div className="space-y-3 sm:space-y-4 pt-5 sm:pt-6 border-t border-gray-100">
-                    <div className="flex items-center justify-between p-2.5 sm:p-3 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl">
+                    <div className="flex items-center justify-between p-2.5 sm:p-3 bg-linear-to-r from-blue-50 to-indigo-50 rounded-xl">
                       <span className="text-xs sm:text-sm text-gray-600 flex items-center">
                         <Shield className="w-3.5 h-3.5 sm:w-4 sm:h-4 mr-1.5 sm:mr-2 text-blue-600" />
                         Role
@@ -250,7 +250,7 @@ export default function AdminProfile() {
                           placeholder="Your full name"
                         />
                       ) : (
-                        <div className="px-3 sm:px-4 py-2 sm:py-3 border-2 border-gray-100 rounded-xl bg-gradient-to-r from-gray-50 to-slate-50 text-gray-900 font-medium text-sm sm:text-base break-words">
+                        <div className="px-3 sm:px-4 py-2 sm:py-3 border-2 border-gray-100 rounded-xl bg-linear-to-r from-gray-50 to-slate-50 text-gray-900 font-medium text-sm sm:text-base wrap-break-words">
                           {user?.name || '—'}
                         </div>
                       )}
@@ -272,7 +272,7 @@ export default function AdminProfile() {
                           placeholder="Enter your email"
                         />
                       ) : (
-                        <div className="px-3 sm:px-4 py-2 sm:py-3 border-2 border-gray-100 rounded-xl bg-gradient-to-r from-gray-50 to-slate-50 text-gray-900 font-medium text-sm sm:text-base break-all">
+                        <div className="px-3 sm:px-4 py-2 sm:py-3 border-2 border-gray-100 rounded-xl bg-linear-to-r from-gray-50 to-slate-50 text-gray-900 font-medium text-sm sm:text-base break-all">
                           {user?.email || '—'}
                         </div>
                       )}
@@ -285,7 +285,7 @@ export default function AdminProfile() {
                         </svg>
                         Role
                       </label>
-                      <div className="px-3 sm:px-4 py-2 sm:py-3 border-2 border-gray-100 rounded-xl bg-gradient-to-r from-gray-50 to-slate-50 text-gray-900 font-medium capitalize text-sm sm:text-base">
+                      <div className="px-3 sm:px-4 py-2 sm:py-3 border-2 border-gray-100 rounded-xl bg-linear-to-r from-gray-50 to-slate-50 text-gray-900 font-medium capitalize text-sm sm:text-base">
                         {user?.role?.replace('_', ' ') || '—'}
                       </div>
                     </div>
@@ -298,7 +298,7 @@ export default function AdminProfile() {
                           </svg>
                           Account Created
                         </label>
-                        <div className="px-3 sm:px-4 py-2 sm:py-3 border-2 border-gray-100 rounded-xl bg-gradient-to-r from-gray-50 to-slate-50 text-gray-900 font-medium text-sm sm:text-base break-words">
+                        <div className="px-3 sm:px-4 py-2 sm:py-3 border-2 border-gray-100 rounded-xl bg-linear-to-r from-gray-50 to-slate-50 text-gray-900 font-medium text-sm sm:text-base wrap-break-words">
                           {new Date(user.created_at).toLocaleString()}
                         </div>
                       </div>
@@ -314,7 +314,7 @@ export default function AdminProfile() {
           <div className="max-w-3xl mx-auto">
             <div className="bg-white rounded-2xl sm:rounded-3xl shadow-xl border border-gray-100 p-5 sm:p-6 lg:p-8">
               <div className="flex items-center mb-5 sm:mb-6">
-                <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-red-500 to-pink-600 rounded-xl sm:rounded-2xl flex items-center justify-center mr-3 sm:mr-4 flex-shrink-0">
+                <div className="w-10 h-10 sm:w-12 sm:h-12 bg-linear-to-br from-red-500 to-pink-600 rounded-xl sm:rounded-2xl flex items-center justify-center mr-3 sm:mr-4 shrink-0">
                   <Lock className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
                 </div>
                 <div>
@@ -329,7 +329,7 @@ export default function AdminProfile() {
                   <p className="text-sm sm:text-base text-gray-600 mb-3 sm:mb-4 px-4">Click "Edit" to change your password</p>
                   <button
                     onClick={() => setEditMode(true)}
-                    className="px-5 sm:px-6 py-2.5 sm:py-3 bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-xl hover:from-blue-700 hover:to-indigo-700 transition-all duration-300 shadow-lg font-semibold text-sm sm:text-base"
+                    className="px-5 sm:px-6 py-2.5 sm:py-3 bg-linear-to-r from-blue-600 to-indigo-600 text-white rounded-xl hover:from-blue-700 hover:to-indigo-700 transition-all duration-300 shadow-lg font-semibold text-sm sm:text-base"
                   >
                     Edit Security Settings
                   </button>

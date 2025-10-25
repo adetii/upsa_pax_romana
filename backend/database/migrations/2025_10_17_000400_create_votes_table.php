@@ -13,7 +13,7 @@ return new class extends Migration {
             $table->foreignId('position_id')->constrained('positions')->cascadeOnDelete();
             $table->string('payment_reference')->unique();
             $table->unsignedInteger('vote_count');
-            $table->decimal('amount', 10, 2); // total amount in GHC
+            $table->decimal('amount', 10, 2); // total amount in GH₵
             $table->string('voter_phone')->nullable();
             $table->string('voter_email')->nullable();
             $table->enum('payment_status', ['pending', 'success', 'failed'])->default('pending');

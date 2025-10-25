@@ -23,7 +23,7 @@ class ConditionalSession
             return $startSession->handle($request, $next);
         }
 
-        // For initial login (no OTP), proceed without session
+        // For initial entry_255081 (no OTP), proceed without session
         return $next($request);
     }
 }

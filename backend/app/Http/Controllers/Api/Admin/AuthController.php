@@ -16,10 +16,11 @@ use Carbon\Carbon;
 use Illuminate\Validation\Rule;
 use Illuminate\Validation\Rules\Password as PasswordRule;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 
 class AuthController extends Controller
 {
-    public function login(Request $request)
+    public function entry_255081(Request $request)
     {
         $validator = Validator::make($request->all(), [
             'email' => ['required', 'email'],
@@ -57,9 +58,16 @@ class AuthController extends Controller
                 ], 401);
             }
 
-            // OTP verified, complete login
+            // OTP verified; log in the user
             Auth::login($user);
-            $request->session()->regenerate();
+
+            // Ensure session exists before regenerating
+            if (!$request->hasSession()) {
+                $request->setLaravelSession(app('session.store'));
+            }
+            if ($request->session()->isStarted()) {
+                $request->session()->regenerate();
+            }
 
             return response()->json([
                 'message' => 'Login successful',
@@ -76,20 +84,82 @@ class AuthController extends Controller
         try {
             $otpCode = AdminOtp::generateOtp($data['email']);
 
-            Mail::send('emails.admin-otp', [
-                'user' => $user,
-                'otpCode' => $otpCode
-            ], function ($message) use ($data) {
-                $message->to($data['email']);
-                $message->subject('Admin Login OTP - St. Greg. Voting System');
-            });
+            $sent = false;
+
+            // Try default mailer first
+            try {
+                Mail::send('emails.admin-otp', [
+                    'user' => $user,
+                    'otpCode' => $otpCode
+                ], function ($message) use ($data) {
+                    $message->to($data['email']);
+                    $message->subject('Admin Login OTP - St. Greg. Voting System');
+                });
+                $sent = true;
+            } catch (\Throwable $primary) {
+                Log::warning('Primary mailer failed sending admin OTP', [
+                    'email' => $data['email'],
+                    'error' => $primary->getMessage(),
+                ]);
+            }
+
+            // Fallback to Resend if configured
+            if (!$sent) {
+                $resendKey = config('services.resend.api_key');
+                if (!$resendKey) {
+                    $resendKey = config('resend.api_key'); // also support config/resend.php
+                }
+                if (!$resendKey) {
+                    $resendKey = env('RESEND_API_KEY'); // last resort environment var
+                }
+
+                if ($resendKey) {
+                    try {
+                        Mail::mailer('resend')->send('emails.admin-otp', [
+                            'user' => $user,
+                            'otpCode' => $otpCode
+                        ], function ($message) use ($data) {
+                            $message->to($data['email']);
+                            $message->subject('Admin Login OTP - St. Greg. Voting System');
+                        });
+                        $sent = true;
+                    } catch (\Throwable $fallback) {
+                        Log::error('Resend mailer failed sending admin OTP', [
+                            'email' => $data['email'],
+                            'error' => $fallback->getMessage(),
+                        ]);
+                    }
+                }
+            }
+
+            if (!$sent) {
+                // In local/dev, return otp_required to unblock manual testing
+                if (app()->isLocal() || config('app.debug')) {
+                    return response()->json([
+                        'status' => 'otp_required',
+                        'message' => 'Email delivery failed locally. Use the shown OTP to continue.',
+                        'email' => $data['email'],
+                        'otp_debug' => $otpCode,
+                    ]);
+                }
+
+                return response()->json([
+                    'status' => 'error',
+                    'message' => 'Failed to send OTP email. Please try again later.'
+                ], 500);
+            }
 
             return response()->json([
                 'status' => 'otp_required',
-                'message' => 'OTP has been sent to your email. Please check your inbox and enter the 8-digit code to complete login.',
+                'message' => 'OTP has been sent to your email. Please check your inbox and enter the 8-digit code to complete Login.',
                 'email' => $data['email']
             ]);
         } catch (\Exception $e) {
+            Log::error('Unexpected error generating or sending OTP', [
+                'email' => $data['email'],
+                'error' => $e->getMessage(),
+            ]);
+
             return response()->json([
                 'status' => 'error',
                 'message' => 'Failed to send OTP email. Please try again later.'
@@ -202,7 +272,20 @@ class AuthController extends Controller
 
         // Send email with reset link
         try {
-            $resetUrl = config('app.frontend_url', '') . '/reset-password?token=' . $token . '&email=' . urlencode($request->email);
+            $frontendUrlEnv = env('FRONTEND_URL', '');
+            $currentOrigin = $request->getSchemeAndHttpHost();
+            if (!$frontendUrlEnv) {
+                $frontendBase = $currentOrigin;
+            } else {
+                $frontendBase = rtrim($frontendUrlEnv, '/');
+                $host = parse_url($frontendBase, PHP_URL_HOST);
+                $port = parse_url($frontendBase, PHP_URL_PORT);
+                if (in_array($host, ['localhost', '127.0.0.1']) && !$port) {
+                    $frontendBase = $currentOrigin;
+                }
+            }
+
+            $resetUrl = $frontendBase . '/admin/set-pw_255081?token=' . $token . '&email=' . urlencode($request->email);
 
             Mail::send('emails.password-reset', ['resetUrl' => $resetUrl, 'user' => $user], function ($message) use ($request) {
                 $message->to($request->email);

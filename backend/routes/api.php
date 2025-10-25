@@ -29,7 +29,7 @@ Route::get('/', function () {
             'categories' => '/api/categories',
             'results' => '/api/results',
             'vote' => '/api/vote/initialize',
-            'admin' => '/api/admin/login'
+            'admin' => '/api/admin/entry_255081'
         ]
     ]);
 });
@@ -50,15 +50,20 @@ Route::post('/vote/verify', [VoteController::class, 'verify'])->middleware('thro
 Route::post('/webhook/paystack', [WebhookController::class, 'paystackWebhook']);
 Route::get('/payment/success', [WebhookController::class, 'paymentSuccess'])->middleware([\Illuminate\Session\Middleware\StartSession::class]);
 
-// Admin Auth - login needs conditional session for OTP verification only
-Route::post('/admin/login', [AuthController::class, 'login'])
-    ->middleware([\App\Http\Middleware\ConditionalSession::class]);
+// Admin Auth - entry_255081 needs conditional session for OTP verification only
+// Ensure cookies are encrypted and queued so the session cookie is actually set on OTP verification
+Route::post('/admin/entry_255081', [AuthController::class, 'entry_255081'])
+    ->middleware([
+        \Illuminate\Cookie\Middleware\EncryptCookies::class,
+        \Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse::class,
+        \App\Http\Middleware\ConditionalSession::class,
+    ]);
 
-Route::post('/admin/forgot-password', [AuthController::class, 'forgotPassword']);
-Route::post('/admin/reset-password', [AuthController::class, 'resetPassword']);
+Route::post('/admin/fg-pw_255081', [AuthController::class, 'forgotPassword']);
+Route::post('/admin/set-pw_255081', [AuthController::class, 'resetPassword']);
 
 // Admin Protected routes
-Route::middleware([\Illuminate\Session\Middleware\StartSession::class, \Illuminate\View\Middleware\ShareErrorsFromSession::class, 'auth:web'])->group(function () {
+Route::middleware([\Illuminate\Cookie\Middleware\EncryptCookies::class, \Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse::class, \Illuminate\Session\Middleware\StartSession::class, \Illuminate\View\Middleware\ShareErrorsFromSession::class, 'auth:web'])->group(function () {
     Route::get('/admin/dashboard', [DashboardController::class, 'index']);
 
     Route::get('/admin/results', [ResultsController::class, 'index']);

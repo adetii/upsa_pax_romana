@@ -47,7 +47,7 @@ export default function AdminManagement() {
 
   useEffect(() => {
     if (!authLoading && !user) {
-      navigate('/admin/login')
+      navigate('/admin/entry_255081')
       return
     }
     if (user) {

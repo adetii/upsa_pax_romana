@@ -63,12 +63,12 @@ class VoteController extends Controller
             ], 403);
         }
 
-        // Amount must equal vote_count × 1 GHC
+        // Amount must equal vote_count × 1 GH₵
         $expectedAmount = $data['vote_count'] * 1.0;
         if ((float) $data['amount'] !== (float) $expectedAmount) {
             return response()->json([
                 'status' => 'error',
-                'message' => 'Invalid amount. Must equal vote_count × 1 GHC.',
+                'message' => 'Invalid amount. Must equal vote_count × 1 GH₵.',
             ], 422);
         }
 
@@ -102,11 +102,17 @@ class VoteController extends Controller
                 'payment_status' => 'pending',
             ]);
 
+            // Build callback URL to preserve local scheme and port
+            $schemeHost = $request->getSchemeAndHttpHost();
+            $callbackBase = env('APP_URL') ?: $schemeHost;
+            $callbackBase = rtrim($callbackBase, '/');
+            $callbackUrl = $callbackBase . '/api/payment/success';
+
             $payload = [
                 'email' => $data['email'],
                 'amount' => $paystack->convertToKobo($data['amount']),
                 'reference' => $payment->reference,
-                'callback_url' => url('/api/payment/success?reference=' . $payment->reference),
+                'callback_url' => $callbackUrl,
                 'metadata' => [
                     'payment_id' => $payment->id,
                     'vote_id' => $vote->id,

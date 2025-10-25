@@ -87,9 +87,9 @@ export default function FAQ() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-white to-blue-50">
+    <div className="min-h-screen bg-linear-to-br from-indigo-50 via-white to-blue-50">
       {/* Hero Section */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-indigo-600 via-blue-600 to-purple-700">
+      <section className="relative overflow-hidden bg-linear-to-br from-indigo-600 via-blue-600 to-purple-700">
         <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIGreg1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxwYXRoIGQ9Ik0zNiAxOGMzLjMxNCAwIDYgMi42ODYgNiA2cy0yLjY4NiA2LTYgNi02LTIuNjg2LTYtNiAyLjY4Ni02IDYtNnoiIHN0cm9rZT0iI2ZmZiIgc3Ryb2tlLW9wYWNpdHk9Ii4xIi8+PC9nPjwvc3ZnPg==')] opacity-10"></div>
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-32">
           <div className="text-center">
@@ -143,7 +143,7 @@ export default function FAQ() {
                   onClick={() => toggleFAQ(idx)}
                   className="w-full px-6 py-5 flex items-start gap-4 text-left hover:bg-gray-50 transition-colors"
                 >
-                  <div className={`flex-shrink-0 w-12 h-12 rounded-xl ${colors.bg} ${colors.text} flex items-center justify-center`}>
+                  <div className={`shrink-0 w-12 h-12 rounded-xl ${colors.bg} ${colors.text} flex items-center justify-center`}>
                     <Icon className="w-6 h-6" />
                   </div>
                   <div className="flex-1 min-w-0">
@@ -153,7 +153,7 @@ export default function FAQ() {
                     )}
                   </div>
                   <ChevronDown
-                    className={`flex-shrink-0 w-6 h-6 text-gray-400 transition-transform duration-300 ${
+                    className={`shrink-0 w-6 h-6 text-gray-400 transition-transform duration-300 ${
                       isOpen ? 'rotate-180' : ''
                     }`}
                   />
@@ -165,7 +165,7 @@ export default function FAQ() {
                   }`}
                 >
                   <div className="px-6 pb-6 pl-22">
-                    <div className={`p-4 rounded-xl bg-gradient-to-br ${colors.bg} border ${colors.border}`}>
+                    <div className={`p-4 rounded-xl bg-linear-to-br ${colors.bg} border ${colors.border}`}>
                       <p className="text-gray-700 leading-relaxed">{item.a}</p>
                     </div>
                   </div>
@@ -178,7 +178,7 @@ export default function FAQ() {
 
       {/* Help Section */}
       <section className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 pb-20">
-        <div className="bg-gradient-to-r from-indigo-600 via-purple-600 to-blue-600 rounded-3xl p-10 text-center shadow-2xl relative overflow-hidden">
+        <div className="bg-linear-to-r from-indigo-600 via-purple-600 to-blue-600 rounded-3xl p-10 text-center shadow-2xl relative overflow-hidden">
           <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIGreg1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxwYXRoIGQ9Ik0zNiAxOGMzLjMxNCAwIDYgMi42ODYgNiA2cy0yLjY4NiA2LTYgNi02LTIuNjg2LTYtNiAyLjY4Ni02IDYtNnoiIHN0cm9rZT0iI2ZmZiIgc3Ryb2tlLW9wYWNpdHk9Ii4xIi8+PC9nPjwvc3ZnPg==')] opacity-20"></div>
           <div className="relative">
             <Users className="w-12 h-12 text-white mx-auto mb-4" />

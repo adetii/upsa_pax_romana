@@ -88,11 +88,11 @@ export default function PublicResults() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
+      <div className="min-h-screen bg-linear-to-br from-slate-50 via-blue-50 to-indigo-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
           <div className="space-y-8">
             {/* Hero Skeleton */}
-            <div className="relative overflow-hidden bg-gradient-to-br from-blue-600 via-indigo-600 to-purple-700 rounded-3xl shadow-2xl p-8 md:p-12">
+            <div className="relative overflow-hidden bg-linear-to-br from-blue-600 via-indigo-600 to-purple-700 rounded-3xl shadow-2xl p-8 md:p-12">
               <div className="animate-pulse">
                 <div className="h-10 w-64 bg-white/20 rounded-xl mb-4"></div>
                 <div className="h-6 w-48 bg-white/10 rounded-lg"></div>
@@ -130,7 +130,7 @@ export default function PublicResults() {
 
   if (error) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 flex items-center justify-center p-4">
+      <div className="min-h-screen bg-linear-to-br from-slate-50 via-blue-50 to-indigo-50 flex items-center justify-center p-4">
         <div className="max-w-md w-full bg-white rounded-3xl shadow-2xl p-8 text-center">
           <div className="w-20 h-20 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-6">
             <svg className="w-10 h-10 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -147,12 +147,12 @@ export default function PublicResults() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
+    <div className="min-h-screen bg-linear-to-br from-slate-50 via-blue-50 to-indigo-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="space-y-8">
           {/* Hero Section */}
-          <div className="relative overflow-hidden bg-gradient-to-br from-blue-600 via-indigo-600 to-purple-700 rounded-3xl shadow-2xl">
-            <div className="absolute inset-0 bg-gradient-to-r from-blue-600/20 to-purple-600/20 backdrop-blur-3xl"></div>
+          <div className="relative overflow-hidden bg-linear-to-br from-blue-600 via-indigo-600 to-purple-700 rounded-3xl shadow-2xl">
+            <div className="absolute inset-0 bg-linear-to-r from-blue-600/20 to-purple-600/20 backdrop-blur-3xl"></div>
             <div className="absolute top-0 right-0 -mt-8 -mr-20 w-64 h-64 bg-white/10 rounded-full blur-3xl"></div>
             <div className="absolute bottom-0 left-0 -mb-12 -ml-12 w-48 h-48 bg-white/5 rounded-full blur-2xl"></div>
             
@@ -341,7 +341,7 @@ export default function PublicResults() {
               <p className="text-gray-600 mb-6">Try adjusting your filters to see more results</p>
               <button
                 onClick={handleResetFilters}
-                className="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold px-6 py-3 rounded-xl transition-all transform hover:scale-105"
+                className="bg-linear-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold px-6 py-3 rounded-xl transition-all transform hover:scale-105"
               >
                 Reset Filters
               </button>
@@ -351,7 +351,7 @@ export default function PublicResults() {
               {groupedResults.map((group, index) => (
                 <div key={index} className="bg-white rounded-2xl shadow-lg overflow-hidden border border-gray-100">
                   {/* Position Header */}
-                  <div className="bg-gradient-to-r from-gray-50 to-blue-50 p-6 md:p-8 border-b border-gray-200">
+                  <div className="bg-linear-to-r from-gray-50 to-blue-50 p-6 md:p-8 border-b border-gray-200">
                     <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
                       <div>
                         <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-2">{group.position}</h2>
@@ -382,17 +382,17 @@ export default function PublicResults() {
                         const percentage = group.totalVotes > 0 ? (r.votes / group.totalVotes) * 100 : 0
                         const isLeading = i === 0 && r.votes > 0 && sortOrder !== 'votes_asc'
                         const rankColors = [
-                          { bg: 'bg-gradient-to-br from-yellow-400 to-yellow-500', text: 'text-yellow-900', bar: 'bg-gradient-to-r from-yellow-400 to-yellow-500', glow: 'shadow-yellow-500/25' },
-                          { bg: 'bg-gradient-to-br from-gray-300 to-gray-400', text: 'text-gray-900', bar: 'bg-gradient-to-r from-gray-400 to-gray-500', glow: 'shadow-gray-500/25' },
-                          { bg: 'bg-gradient-to-br from-orange-400 to-orange-500', text: 'text-orange-900', bar: 'bg-gradient-to-r from-orange-400 to-orange-500', glow: 'shadow-orange-500/25' },
+                          { bg: 'bg-linear-to-br from-yellow-400 to-yellow-500', text: 'text-yellow-900', bar: 'bg-gradient-to-r from-yellow-400 to-yellow-500', glow: 'shadow-yellow-500/25' },
+                          { bg: 'bg-linear-to-br from-gray-300 to-gray-400', text: 'text-gray-900', bar: 'bg-gradient-to-r from-gray-400 to-gray-500', glow: 'shadow-gray-500/25' },
+                          { bg: 'bg-linear-to-br from-orange-400 to-orange-500', text: 'text-orange-900', bar: 'bg-gradient-to-r from-orange-400 to-orange-500', glow: 'shadow-orange-500/25' },
                         ]
-                        const colorScheme = rankColors[i] || { bg: 'bg-gradient-to-br from-blue-400 to-blue-500', text: 'text-blue-900', bar: 'bg-gradient-to-r from-blue-400 to-blue-500', glow: 'shadow-blue-500/25' }
+                        const colorScheme = rankColors[i] || { bg: 'bg-linear-to-br from-blue-400 to-blue-500', text: 'text-blue-900', bar: 'bg-gradient-to-r from-blue-400 to-blue-500', glow: 'shadow-blue-500/25' }
 
                         return (
                           <div key={i} className={`group relative bg-gray-50 rounded-2xl p-6 hover:shadow-xl transition-all border-2 ${isLeading ? 'border-green-200 bg-green-50/50' : 'border-transparent'}`}>
                             <div className="flex items-start justify-between mb-4">
                               <div className="flex items-center space-x-4 flex-1">
-                                <div className={`w-14 h-14 ${colorScheme.bg} rounded-xl flex items-center justify-center text-xl font-bold ${colorScheme.text} shadow-lg ${colorScheme.glow} group-hover:scale-110 transition-transform flex-shrink-0`}>
+                                <div className={`w-14 h-14 ${colorScheme.bg} rounded-xl flex items-center justify-center text-xl font-bold ${colorScheme.text} shadow-lg ${colorScheme.glow} group-hover:scale-110 transition-transform shrink-0`}>
                                   {i + 1}
                                 </div>
                                 <div className="flex-1 min-w-0">
@@ -410,7 +410,7 @@ export default function PublicResults() {
                                   <p className="text-sm text-gray-500">Candidate #{i + 1}</p>
                                 </div>
                               </div>
-                              <div className="text-right ml-4 flex-shrink-0">
+                              <div className="text-right ml-4 shrink-0">
                                 <div className="text-2xl font-bold text-gray-900 mb-1">{r.votes.toLocaleString()}</div>
                                 <div className="text-sm font-semibold text-gray-500">votes</div>
                               </div>
@@ -427,7 +427,7 @@ export default function PublicResults() {
                                   className={`h-4 ${colorScheme.bar} rounded-full transition-all duration-1000 ease-out shadow-lg relative overflow-hidden`}
                                   style={{ width: `${percentage}%` }}
                                 >
-                                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent animate-shimmer"></div>
+                                  <div className="absolute inset-0 bg-linear-to-r from-transparent via-white/30 to-transparent animate-shimmer"></div>
                                 </div>
                               </div>
                             </div>
@@ -442,7 +442,7 @@ export default function PublicResults() {
           )}
 
           {/* Footer Info */}
-          <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-2xl p-6 border border-blue-100">
+          <div className="bg-linear-to-r from-blue-50 to-indigo-50 rounded-2xl p-6 border border-blue-100">
             <div className="flex flex-col md:flex-row items-center justify-between gap-4">
               <div className="flex items-center space-x-3">
                 <svg className="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">

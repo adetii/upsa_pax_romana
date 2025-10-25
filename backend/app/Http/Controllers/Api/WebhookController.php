@@ -119,7 +119,20 @@ class WebhookController extends Controller
     public function paymentSuccess(Request $request)
     {
         $reference = $request->query('reference') ?: $request->session()->get('pending_paystack_reference');
-        $frontendUrl = env('FRONTEND_URL', '');
+
+        // Resolve frontend base URL with safe local fallback
+        $frontendUrlEnv = env('FRONTEND_URL', '');
+        $currentOrigin = $request->getSchemeAndHttpHost();
+        if (!$frontendUrlEnv) {
+            $frontendBase = $currentOrigin;
+        } else {
+            $frontendBase = rtrim($frontendUrlEnv, '/');
+            $host = parse_url($frontendBase, PHP_URL_HOST);
+            $port = parse_url($frontendBase, PHP_URL_PORT);
+            if (in_array($host, ['localhost', '127.0.0.1']) && !$port) {
+                $frontendBase = $currentOrigin;
+            }
+        }
 
         // Clear the pending reference once read
         if ($request->session()) {
@@ -127,14 +140,14 @@ class WebhookController extends Controller
         }
         
         if (!$reference) {
-            return redirect($frontendUrl . '/payment/failed?error=missing_reference');
+            return redirect($frontendBase . '/payment/failed?error=missing_reference');
         }
 
         // Find the payment record
         $payment = Payment::where('reference', $reference)->first();
         
         if (!$payment) {
-            return redirect($frontendUrl . '/payment/failed?error=payment_not_found');
+            return redirect($frontendBase . '/payment/failed?error=payment_not_found');
         }
 
         // If payment is already marked as successful, refresh caches and redirect
@@ -156,7 +169,7 @@ class WebhookController extends Controller
                 }
                 \Illuminate\Support\Facades\Cache::put('paystack:verified:' . $reference, true, now()->addMinutes(5));
             }
-            return redirect($frontendUrl . "/payment/success?reference={$reference}");
+            return redirect($frontendBase . "/payment/success?reference={$reference}");
         }
 
         // If payment is still pending, verify with Paystack directly
@@ -197,7 +210,7 @@ class WebhookController extends Controller
                         \Illuminate\Support\Facades\Cache::put('paystack:verified:' . $reference, true, now()->addMinutes(5));
                     }
 
-                    return redirect($frontendUrl . "/payment/success?reference={$reference}");
+                    return redirect($frontendBase . "/payment/success?reference={$reference}");
                 }
             } catch (\Exception $e) {
                 \Illuminate\Support\Facades\Log::error("Payment verification failed for reference {$reference}: " . $e->getMessage());
@@ -205,6 +218,6 @@ class WebhookController extends Controller
         }
 
         // If we get here, payment verification failed or payment status is failed
-        return redirect($frontendUrl . '/payment/failed?error=payment_not_successful');
+        return redirect($frontendBase . '/payment/failed?error=payment_not_successful');
     }
 }

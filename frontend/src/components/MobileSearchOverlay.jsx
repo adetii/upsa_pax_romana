@@ -80,7 +80,7 @@ export default function MobileSearchOverlay({ isOpen, onClose }) {
     <div className="lg:hidden fixed inset-0 z-50 bg-gray-900/50 backdrop-blur-sm">
       <div className="bg-white h-full flex flex-col">
         {/* Header */}
-        <div className="flex items-center p-4 border-b border-gray-200 bg-gradient-to-r from-blue-50 to-indigo-50">
+        <div className="flex items-center p-4 border-b border-gray-200 bg-linear-to-r from-blue-50 to-indigo-50">
           <div className="flex-1 relative">
             <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
               <svg className="h-5 w-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -170,7 +170,7 @@ export default function MobileSearchOverlay({ isOpen, onClose }) {
                   <button
                     key={index}
                     onClick={() => handleResultClick(item)}
-                    className="flex flex-col items-center p-4 bg-gradient-to-br from-gray-50 to-blue-50 hover:from-blue-50 hover:to-indigo-50 rounded-xl border border-gray-200 hover:border-blue-300 transition-all duration-200 touch-manipulation"
+                    className="flex flex-col items-center p-4 bg-linear-to-br from-gray-50 to-blue-50 hover:from-blue-50 hover:to-indigo-50 rounded-xl border border-gray-200 hover:border-blue-300 transition-all duration-200 touch-manipulation"
                   >
                     <div className="p-3 bg-blue-500 rounded-xl mb-3">
                       {getResultIcon(item.type)}

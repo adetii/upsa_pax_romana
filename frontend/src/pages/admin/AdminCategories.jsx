@@ -52,8 +52,8 @@ export default function AdminCategories() {
       if (error.status === 404) {
         toast.error('Categories endpoint not found. Please contact administrator.')
       } else if (error.status === 401) {
-        toast.error('Session expired. Please login again.')
-        navigate('/admin/login')
+        toast.error('Session expired. Please entry_255081 again.')
+        navigate('/admin/entry_255081')
         return
       } else if (error.status >= 500) {
         toast.error('Server error. Please try again later.')
@@ -92,8 +92,8 @@ export default function AdminCategories() {
           toast.error('Validation failed. Please check your input.')
         }
       } else if (error.status === 401) {
-        toast.error('Session expired. Please login again.')
-        navigate('/admin/login')
+        toast.error('Session expired. Please entry_255081 again.')
+        navigate('/admin/entry_255081')
       } else {
         toast.error('Failed to save category. Please try again.')
       }
@@ -123,8 +123,8 @@ export default function AdminCategories() {
       if (error.status === 422) {
         toast.error('Cannot delete category with associated positions')
       } else if (error.status === 401) {
-        toast.error('Session expired. Please login again.')
-        navigate('/admin/login')
+        toast.error('Session expired. Please entry_255081 again.')
+        navigate('/admin/entry_255081')
       } else if (error.status === 404) {
         toast.error('Category not found')
         loadCategories()
@@ -144,8 +144,8 @@ export default function AdminCategories() {
       console.error('Error updating category status:', error)
       
       if (error.status === 401) {
-        toast.error('Session expired. Please login again.')
-        navigate('/admin/login')
+        toast.error('Session expired. Please entry_255081 again.')
+        navigate('/admin/entry_255081')
       } else if (error.status === 404) {
         toast.error('Category not found')
         loadCategories()
@@ -227,7 +227,7 @@ export default function AdminCategories() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
           <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
             <div className="flex items-center">
-              <div className="flex-shrink-0">
+              <div className="shrink-0">
                 <div className="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center">
                   <svg className="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11H5m14-7H5a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2V6a2 2 0 00-2-2z" />
@@ -243,7 +243,7 @@ export default function AdminCategories() {
 
           <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
             <div className="flex items-center">
-              <div className="flex-shrink-0">
+              <div className="shrink-0">
                 <div className="w-8 h-8 bg-green-100 rounded-lg flex items-center justify-center">
                   <svg className="w-5 h-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -261,7 +261,7 @@ export default function AdminCategories() {
 
           <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
             <div className="flex items-center">
-              <div className="flex-shrink-0">
+              <div className="shrink-0">
                 <div className="w-8 h-8 bg-red-100 rounded-lg flex items-center justify-center">
                   <svg className="w-5 h-5 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -331,8 +331,8 @@ export default function AdminCategories() {
                 <div key={category.id} className="p-4 hover:bg-gray-50 transition-colors">
                   <div className="flex items-start justify-between mb-3">
                     <div className="flex items-center">
-                      <div className="flex-shrink-0 h-10 w-10">
-                        <div className="h-10 w-10 rounded-lg bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center">
+                      <div className="shrink-0 h-10 w-10">
+                        <div className="h-10 w-10 rounded-lg bg-linear-to-br from-blue-500 to-purple-600 flex items-center justify-center">
                           <span className="text-white font-semibold text-sm">
                             {category.name.charAt(0).toUpperCase()}
                           </span>
@@ -413,8 +413,8 @@ export default function AdminCategories() {
                     <tr key={category.id} className="hover:bg-gray-50 transition-colors">
                       <td className="px-6 py-4 whitespace-nowrap">
                         <div className="flex items-center">
-                          <div className="flex-shrink-0 h-10 w-10">
-                            <div className="h-10 w-10 rounded-lg bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center">
+                          <div className="shrink-0 h-10 w-10">
+                            <div className="h-10 w-10 rounded-lg bg-linear-to-br from-blue-500 to-purple-600 flex items-center justify-center">
                               <span className="text-white font-semibold text-sm">
                                 {category.name.charAt(0).toUpperCase()}
                               </span>

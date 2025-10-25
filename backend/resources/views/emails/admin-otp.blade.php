@@ -63,7 +63,7 @@
     <div class="content">
         <h2>Hello {{ $user->name }},</h2>
         
-        <p>You have requested to log in to the St. Greg. Voting System admin panel. Please use the following One-Time Password (OTP) to complete your login:</p>
+        <p>You have requested to log in to the St. Greg. Voting System admin panel. Please use the following One-Time Password (OTP) to complete your Login:</p>
         
         <div class="otp-code">
             {{ $otpCode }}
@@ -75,7 +75,7 @@
                 <li>This OTP is valid for <strong>5 minutes</strong> only</li>
                 <li>You have <strong>3 attempts</strong> to enter the correct code</li>
                 <li>Do not share this code with anyone</li>
-                <li>If you didn't request this login, please ignore this email</li>
+                <li>If you didn't request this Login, please ignore this email</li>
                 <li>For security reasons, this code can only be used once</li>
             </ul>
         </div>

@@ -17,9 +17,9 @@ class PaystackService
         $this->baseUrl = 'https://api.paystack.co';
     }
 
-    public function convertToKobo(float $amountGhc): int
+    public function convertToKobo(float $amountGH₵): int
     {
-        return (int) round($amountGhc * 100);
+        return (int) round($amountGH₵ * 100);
     }
 
     public function initializeTransaction(array $data): array

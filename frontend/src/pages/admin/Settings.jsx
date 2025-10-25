@@ -44,8 +44,8 @@ export default function Settings() {
       console.error('Error loading settings:', error)
       const msg = error?.message || 'Failed to load settings'
       if (msg === 'Unauthorized') {
-        toast.error('Session expired. Please login again.')
-        navigate('/admin/login')
+        toast.error('Session expired. Please Login again.')
+        navigate('/admin/entry_255081')
         return
       }
       if (msg === 'Forbidden') {
@@ -86,8 +86,8 @@ export default function Settings() {
       console.error('Error updating settings:', error)
       const msg = error?.message || 'Failed to update settings'
       if (msg === 'Unauthorized') {
-        toast.error('Session expired. Please login again.')
-        navigate('/admin/login')
+        toast.error('Session expired. Please Login again.')
+        navigate('/admin/entry_255081')
       } else if (msg === 'Forbidden') {
         toast.error('Access denied. Super admin privileges required.')
       } else {
@@ -117,8 +117,8 @@ export default function Settings() {
       console.error('Error toggling voting:', error)
       const msg = error?.message || 'Failed to toggle voting'
       if (msg === 'Unauthorized') {
-        toast.error('Session expired. Please login again.')
-        navigate('/admin/login')
+        toast.error('Session expired. Please Login again.')
+        navigate('/admin/entry_255081')
       } else if (msg === 'Forbidden') {
         toast.error('Access denied. Super admin privileges required.')
       } else {
@@ -148,8 +148,8 @@ export default function Settings() {
       console.error('Error updating lock message:', error)
       const msg = error?.message || 'Failed to update lock message'
       if (msg === 'Unauthorized') {
-        toast.error('Session expired. Please login again.')
-        navigate('/admin/login')
+        toast.error('Session expired. Please Login again.')
+        navigate('/admin/entry_255081')
       } else if (msg === 'Forbidden') {
         toast.error('Access denied. Super admin privileges required.')
       } else {

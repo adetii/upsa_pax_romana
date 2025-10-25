@@ -9,7 +9,9 @@ export function AuthProvider({ children }) {
   useEffect(() => {
     const path = window.location.pathname
     const isAdminPath = path.startsWith('/admin')
-    const isAdminAuthPage = path.includes('/admin/login')
+    const isAdminAuthPage = path.includes('/admin/entry_255081')
+      || path.includes('/admin/fg-pw_255081')
+      || path.includes('/admin/set-pw_255081')
 
     let mounted = true
     const hydrate = async () => {

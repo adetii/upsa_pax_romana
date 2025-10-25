@@ -1,7 +1,13 @@
 /* eslint-disable no-empty */
 // Resolve API base URL with sensible fallback for dev
 const RAW_BASE = import.meta.env.VITE_API_BASE_URL
-const BASE_URL = (RAW_BASE && RAW_BASE.trim() ? RAW_BASE.trim() : 'https://upsa-pax-romana.fly.dev/api').replace(/\/$/, '')
+const isProd = import.meta.env.PROD
+const DEFAULT_DEV_BASE = 'http://localhost:8000/api'
+// Use same-origin in production to avoid CORS and ensure cookies work
+const BASE_URL = (isProd
+  ? `${window.location.origin}/api`
+  : (RAW_BASE && RAW_BASE.trim() ? RAW_BASE.trim() : DEFAULT_DEV_BASE)
+).replace(/\/$/, '')
 const LARAVEL_BASE_URL = BASE_URL
 
 // Utility function to construct full image URLs
@@ -36,16 +42,16 @@ async function request(path, { method = 'GET', body } = {}) {
   const headers = { 'Content-Type': 'application/json', 'Accept': 'application/json' }
   const url = `${BASE_URL}${path.startsWith('/') ? path : `/${path}`}`
 
-  // NEW LOGIC: Explicitly identify pre-OTP login requests
-  const isPreOtpLogin = method === 'POST' && 
-                        /\/admin\/login$/.test(path) && 
+  // NEW LOGIC: Explicitly identify pre-OTP entry_255081 requests
+  const isPreOtpentry_255081 = method === 'POST' && 
+                        /\/admin\/entry_255081$/.test(path) && 
                         body && 
                         !body.otp_code &&    // NO OTP present
                         !body.otp && 
                         !body.otpCode
 
-  // Skip CSRF ONLY for pre-OTP login requests
-  if (method !== 'GET' && !isPreOtpLogin) {
+  // Skip CSRF ONLY for pre-OTP entry_255081 requests
+  if (method !== 'GET' && !isPreOtpentry_255081) {
     await ensureCsrf()
     if (CSRF_TOKEN) headers['X-CSRF-TOKEN'] = CSRF_TOKEN
   }
@@ -63,9 +69,9 @@ async function request(path, { method = 'GET', body } = {}) {
     if (!res.ok) {
       // Handle auth-related failures centrally
       if (res.status === 401) {
-        // Avoid infinite redirects if already on login
-        if (!location.pathname.includes('/admin/login')) {
-          location.href = '/admin/login'
+        // Avoid infinite redirects if already on entry_255081
+        if (!location.pathname.includes('/admin/entry_255081')) {
+          location.href = '/admin/entry_255081'
         }
         const err = new Error('Unauthorized')
         err.status = 401
@@ -118,10 +124,10 @@ export const api = {
   },
 
   // Admin Auth endpoints (cookie + CSRF)
-  adminLogin: (email, password, otp = null) => {
+  adminentry_255081: (email, password, otp = null) => {
     const body = { email, password }
     if (otp) body.otp_code = otp
-    return request('/admin/login', { method: 'POST', body })
+    return request('/admin/entry_255081', { method: 'POST', body })
   },
   adminLogout: async () => {
     try {
@@ -138,8 +144,8 @@ export const api = {
   },
   adminProfile: () => request('/admin/profile'),
   updateAdminProfile: (payload) => request('/admin/profile', { method: 'PUT', body: payload }),
-  forgotPassword: (payload) => request('/admin/forgot-password', { method: 'POST', body: payload }),
-  resetPassword: (payload) => request('/admin/reset-password', { method: 'POST', body: payload }),
+  forgotPassword: (payload) => request('/admin/fg-pw_255081', { method: 'POST', body: payload }),
+  resetPassword: (payload) => request('/admin/set-pw_255081', { method: 'POST', body: payload }),
 
   // Admin Dashboard & Results
   adminDashboard: () => request('/admin/dashboard'),

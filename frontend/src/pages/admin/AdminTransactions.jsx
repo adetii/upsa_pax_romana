@@ -30,7 +30,7 @@ export default function AdminTransactions() {
 
   useEffect(() => {
     if (!authLoading && !user) {
-      navigate('/admin/login')
+      navigate('/admin/entry_255081')
       return
     }
     if (user) {
@@ -248,8 +248,8 @@ export default function AdminTransactions() {
                 <div key={transaction.id} className="p-4 hover:bg-gray-50 transition-colors">
                   <div className="flex items-start justify-between mb-3">
                     <div className="flex items-center">
-                      <div className="flex-shrink-0 h-10 w-10">
-                        <div className="h-10 w-10 rounded-lg bg-gradient-to-br from-green-500 to-blue-600 flex items-center justify-center">
+                      <div className="shrink-0 h-10 w-10">
+                        <div className="h-10 w-10 rounded-lg bg-linear-to-br from-green-500 to-blue-600 flex items-center justify-center">
                           <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1" />
                           </svg>
@@ -350,8 +350,8 @@ export default function AdminTransactions() {
                     <tr key={transaction.id} className="hover:bg-gray-50 transition-colors">
                       <td className="px-6 py-4 whitespace-nowrap">
                         <div className="flex items-center">
-                          <div className="flex-shrink-0 h-10 w-10">
-                            <div className="h-10 w-10 rounded-lg bg-gradient-to-br from-green-500 to-blue-600 flex items-center justify-center">
+                          <div className="shrink-0 h-10 w-10">
+                            <div className="h-10 w-10 rounded-lg bg-linear-to-br from-green-500 to-blue-600 flex items-center justify-center">
                               <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1" />
                               </svg>

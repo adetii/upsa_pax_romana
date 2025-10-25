@@ -4,12 +4,10 @@ import { api, getImageUrl } from '../../lib/api'
 import toast from 'react-hot-toast'
 
 export default function VotePage() {
-  const [categories, setCategories] = useState([])
   const [positions, setPositions] = useState([])
   const [candidates, setCandidates] = useState({}) // positionId -> candidates array
   const [expandedPositions, setExpandedPositions] = useState(new Set()) // Track which positions are expanded
   const [loadingPositions, setLoadingPositions] = useState(new Set()) // Track which positions are loading
-  const [selectedCategory, setSelectedCategory] = useState('')
   const [selectedPosition, setSelectedPosition] = useState('')
   const [email, setEmail] = useState('')
   const [phone, setPhone] = useState('')
@@ -53,8 +51,6 @@ export default function VotePage() {
         toast.error('Church category not found')
         return
       }
-      
-      setCategories([churchCategory])
       
       // Load positions only (no candidates yet)
       try {
@@ -258,7 +254,6 @@ export default function VotePage() {
 
   // Filter positions based on selected filters
   const filteredPositions = positions.filter(position => {
-    if (selectedCategory && position.category_id !== parseInt(selectedCategory)) return false
     if (selectedPosition && position.name !== selectedPosition) return false
     return true
   })
@@ -279,7 +274,7 @@ export default function VotePage() {
 
   if (loading && positions.length === 0) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 to-indigo-50">
+      <div className="min-h-screen flex items-center justify-center bg-linear-to-br from-blue-50 to-indigo-50">
         <div className="text-center">
           <div className="animate-spin rounded-full h-16 w-16 border-4 border-blue-200 border-t-blue-600 mx-auto mb-4"></div>
           <p className="text-gray-600 font-medium">Loading voting data...</p>
@@ -289,16 +284,16 @@ export default function VotePage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-50">
+    <div className="min-h-screen bg-linear-to-br from-blue-50 to-indigo-50">
       {/* Header */}
       <div className="bg-white shadow-sm border-b border-gray-200 sticky top-0 z-10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
             <div>
-              <h1 className="text-3xl sm:text-4xl font-bold bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
+              <h1 className="text-3xl sm:text-4xl font-bold bg-linear-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
                 St. Greg. Elections
               </h1>
-              <p className="text-gray-600 mt-1">Vote for your preferred candidates • GHC 1 per vote</p>
+              <p className="text-gray-600 mt-1">Vote for your preferred candidates • GH₵ 1 per vote</p>
             </div>
           </div>
         </div>
@@ -310,7 +305,7 @@ export default function VotePage() {
         {votingLocked && (
           <div className="bg-red-50 border-l-4 border-red-400 p-6 rounded-lg">
             <div className="flex items-center">
-              <div className="flex-shrink-0">
+              <div className="shrink-0">
                 <svg className="h-6 w-6 text-red-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.732 16.5c-.77.833.192 2.5 1.732 2.5z" />
                 </svg>
@@ -336,28 +331,6 @@ export default function VotePage() {
             Filter Candidates
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {/* Category Filter */}
-            <div>
-              <label className="block text-sm font-semibold text-gray-700 mb-2">
-                Filter by Category
-              </label>
-              <select
-                value={selectedCategory}
-                onChange={(e) => {
-                  setSelectedCategory(e.target.value)
-                  setSelectedPosition('') // Reset position when category changes
-                }}
-                className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white"
-              >
-                <option value="">All Categories</option>
-                {categories.map((category) => (
-                  <option key={category.id} value={category.id}>
-                    {category.name}
-                  </option>
-                ))}
-              </select>
-            </div>
-
             {/* Position Filter */}
             <div>
               <label className="block text-sm font-semibold text-gray-700 mb-2">
@@ -379,11 +352,10 @@ export default function VotePage() {
           </div>
           
           {/* Clear Filters */}
-          {(selectedCategory || selectedPosition) && (
+          {(selectedPosition) && (
             <div className="mt-4">
               <button
                 onClick={() => {
-                  setSelectedCategory('')
                   setSelectedPosition('')
                 }}
                 className="inline-flex items-center gap-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 text-gray-700 font-medium rounded-lg transition-colors text-sm"
@@ -442,7 +414,7 @@ export default function VotePage() {
             <div className="text-6xl mb-4">⛪</div>
             <h3 className="text-2xl font-bold text-gray-900 mb-2">No Positions Found</h3>
             <p className="text-gray-600">
-              {selectedCategory || selectedPosition 
+              {selectedPosition 
                 ? 'No positions match your current filters. Try adjusting your selection.' 
                 : 'Positions will be added soon.'}
             </p>
@@ -524,7 +496,7 @@ export default function VotePage() {
                                 className="bg-white rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden border-2 border-gray-100 hover:border-blue-200 group"
                               >
                                 {/* Candidate Photo */}
-                                <div className="relative h-64 bg-gradient-to-br from-blue-100 to-indigo-100 overflow-hidden">
+                                <div className="relative h-64 bg-linear-to-br from-blue-100 to-indigo-100 overflow-hidden">
                                   {candidate.photo_url ? (
                                     <img
                                       src={getImageUrl(candidate.photo_url)}
@@ -614,7 +586,7 @@ export default function VotePage() {
                                   </div>
 
                                   {/* Total Cost */}
-                                  <div className="bg-gradient-to-r from-blue-100 to-indigo-100 rounded-xl p-4 text-center mb-4">
+                                  <div className="bg-linear-to-r from-blue-100 to-indigo-100 rounded-xl p-4 text-center mb-4">
                                     <p className="text-sm text-gray-600 mb-1">Total Cost</p>
                                     <p className="text-3xl font-bold text-blue-700">GH₵{totalCost.toFixed(2)}</p>
                                   </div>
@@ -626,7 +598,7 @@ export default function VotePage() {
                                     className={`w-full font-bold py-4 rounded-xl shadow-lg hover:shadow-xl transition-all disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:shadow-lg text-lg ${
                                       votingLocked 
                                         ? 'bg-gray-400 text-gray-700' 
-                                        : 'bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white'
+                                        : 'bg-linear-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white'
                                     }`}
                                   >
                                     {votingLocked ? (

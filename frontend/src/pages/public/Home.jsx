@@ -7,7 +7,7 @@ export default function Home() {
     <div className="min-h-screen bg-gray-50 text-gray-900">
       {/* Hero Section */}
       <section
-        className="relative text-white bg-cover bg-center min-h-[100svh] w-full flex items-center justify-center hero-kenburns-bg"
+        className="relative text-white bg-cover bg-center min-h-svh w-full flex items-center justify-center hero-kenburns-bg"
         style={{ '--hero-bg': `url(${homeBg})` }}
       >
         {/* Dark overlay */}
@@ -16,20 +16,21 @@ export default function Home() {
         {/* Content */}
         <div className="relative z-20 text-center px-6 sm:px-8">
           {/* Logo */}
-          <div className="flex justify-center mb-10 animate-fade-in-up delay-100ms">
-            <img
-              src={logoImg}
-              alt="St. Gregory Logo"
-              className="w-36 h-36 sm:w-44 sm:h-44 md:w-52 md:h-52 object-contain drop-shadow-lg hover:scale-105 transition-transform duration-300 animate-hero-float"
-            />
-          </div>
+            <div className="flex justify-center mb-10 animate-fade-in-up delay-100ms">
+              <img
+                src={logoImg}
+                alt="St. Gregory Logo"
+                className="w-85 h-85 sm:w-64 sm:h-64 md:w-72 md:h-72 object-contain drop-shadow-lg hover:scale-105 transition-transform duration-300 animate-hero-float"
+              />
+            </div>
+
 
           {/* Title */}
           <div className="ml-2 sm:ml-4 min-w-0 text-center animate-fade-in-up delay-200ms">
-            <span className="block text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight tracking-wide uppercase text-white break-words">
+            <span className="block text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight tracking-wide uppercase text-white wrap-break-words">
               ST. GREGORY THE GREAT
             </span>
-            <div className="block text-xs sm:text-base md:text-lg lg:text-xl text-gray-200 font-semibold leading-snug tracking-wide uppercase break-words animate-fade-in-up delay-350ms">
+            <div className="block text-xs sm:text-base md:text-lg lg:text-xl text-gray-200 font-semibold leading-snug tracking-wide uppercase wrap-break-words animate-fade-in-up delay-350ms">
               CATHOLIC CHAPLAINCY - UPSA
             </div>
           </div>
@@ -50,12 +51,12 @@ export default function Home() {
             {/* Church Elections */}
             <Link
               to="/vote"
-              className="group bg-white p-10 rounded-3xl shadow-md hover:shadow-xl transition-shadow duration-300 border border-transparent hover:border-yellow-400"
+              className="group bg-white p-10 rounded-3xl shadow-md hover:shadow-xl transition-shadow duration-300 border border-transparent hover:border-blue-400"
             >
               <div className="flex justify-center mb-6">
-                <div className="p-4 bg-yellow-400/20 rounded-full group-hover:bg-yellow-400/30 transition-colors duration-300">
+                <div className="p-4 bg-blue-400 rounded-full group-hover:bg-blue-400 transition-colors duration-300">
                   <svg
-                    className="w-10 h-10 text-yellow-500"
+                    className="w-10 h-10 text-white"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -68,7 +69,7 @@ export default function Home() {
               <p className="text-gray-600 mb-6">
                 Vote for church leadership and community representatives.
               </p>
-              <span className="inline-block bg-yellow-400 text-gray-900 px-6 py-3 rounded-full font-medium group-hover:shadow-lg transition-all duration-300">
+              <span className="inline-block bg-blue-400 text-gray-900 px-6 py-3 rounded-full font-medium group-hover:shadow-lg transition-all duration-300">
                 Vote Now
               </span>
             </Link>
@@ -76,12 +77,12 @@ export default function Home() {
             {/* National Elections */}
             <Link
               to="/vote/national"
-              className="group bg-white p-10 rounded-3xl shadow-md hover:shadow-xl transition-shadow duration-300 border border-transparent hover:border-yellow-400"
+              className="group bg-white p-10 rounded-3xl shadow-md hover:shadow-xl transition-shadow duration-300 border border-transparent hover:border-blue-400"
             >
               <div className="flex justify-center mb-6">
-                <div className="p-4 bg-yellow-400/20 rounded-full group-hover:bg-yellow-400/30 transition-colors duration-300">
+                <div className="p-4 bg-blue-400 rounded-full group-hover:bg-blue-400 transition-colors duration-300">
                   <svg
-                    className="w-10 h-10 text-yellow-500"
+                    className="w-10 h-10 text-white"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -94,7 +95,7 @@ export default function Home() {
               <p className="text-gray-600 mb-6">
                 Participate in national-level elections and civic processes.
               </p>
-              <span className="inline-block bg-yellow-400 text-gray-900 px-6 py-3 rounded-full font-medium group-hover:shadow-lg transition-all duration-300">
+              <span className="inline-block bg-blue-400 text-gray-900 px-6 py-3 rounded-full font-medium group-hover:shadow-lg transition-all duration-300">
                 Vote Now
               </span>
             </Link>

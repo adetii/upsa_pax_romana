@@ -75,13 +75,13 @@ export default function VoteConfirmationModal({
             </div>
             <div className="flex justify-between items-center">
               <span className="text-gray-700 font-medium">Cost per Vote:</span>
-              <span className="text-lg font-semibold text-gray-900">GHC 1.00</span>
+              <span className="text-lg font-semibold text-gray-900">GH₵ 1.00</span>
             </div>
             <hr className="border-gray-300" />
             <div className="flex justify-between items-center">
               <span className="text-lg font-bold text-gray-900">Total Amount:</span>
               <span className="text-2xl font-bold text-green-600">
-                GHC {totalAmount?.toFixed(2)}
+                GH₵ {totalAmount?.toFixed(2)}
               </span>
             </div>
           </div>
@@ -143,7 +143,7 @@ export default function VoteConfirmationModal({
                 Processing...
               </div>
             ) : (
-              `💳 Pay GHC ${totalAmount?.toFixed(2)}`
+              `💳 Pay GH₵ ${totalAmount?.toFixed(2)}`
             )}
           </button>
         </div>

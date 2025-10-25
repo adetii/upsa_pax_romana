@@ -65,7 +65,7 @@ export default function PublicLayout() {
   }, [location.pathname])
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
+    <div className="min-h-screen bg-linear-to-br from-slate-50 via-blue-50 to-indigo-50">
       {/* Header (hidden on Home) */}
       {!isHome && (
         <header className={`sticky top-0 z-50 transition-all duration-300 ${
@@ -76,7 +76,7 @@ export default function PublicLayout() {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex justify-between items-center h-20">
               {/* Logo */}
-              <div className="flex-shrink-0">
+              <div className="shrink-0">
                 <Link to="/" className="flex items-center group">
                     <div className="flex items-center justify-center">
                       <div className="relative group">
@@ -89,10 +89,10 @@ export default function PublicLayout() {
                       </div>
                     </div>
                   <div className="ml-2 sm:ml-4 min-w-0">
-                    <span className="block text-base sm:text-lg md:text-2xl lg:text-3xl font-extrabold leading-tight tracking-wide uppercase bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent break-words">
+                    <span className="block text-base sm:text-lg md:text-2xl lg:text-3xl font-extrabold leading-tight tracking-wide uppercase bg-linear-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent wrap-break-words">
                       ST. GREGORY THE GREAT
                     </span>
-                    <div className="block text-[10px] sm:text-xs md:text-sm text-gray-600 font-semibold leading-snug tracking-wide uppercase break-words">CATHOLIC CHAPLAINCY - UPSA</div>
+                    <div className="block text-[10px] sm:text-xs md:text-sm text-gray-600 font-semibold leading-snug tracking-wide uppercase wrap-break-words">CATHOLIC CHAPLAINCY - UPSA</div>
                   </div>
                 </Link>
               </div>
@@ -105,7 +105,7 @@ export default function PublicLayout() {
                     to={item.href}
                     className={`group relative px-4 py-2.5 rounded-xl text-sm font-semibold transition-all duration-300 flex items-center space-x-2 ${
                       isActive(item.href)
-                        ? 'bg-gradient-to-r from-blue-500 to-indigo-600 text-white shadow-lg shadow-blue-500/25'
+                        ? 'bg-linear-to-r from-blue-500 to-indigo-600 text-white shadow-lg shadow-blue-500/25'
                         : 'text-gray-700 hover:text-blue-600 hover:bg-blue-50/80'
                     }`}
                   >
@@ -116,17 +116,17 @@ export default function PublicLayout() {
                     </span>
                     <span>{item.name}</span>
                     {!isActive(item.href) && (
-                      <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-blue-500 to-indigo-600 opacity-0 group-hover:opacity-10 transition-opacity duration-300"></div>
+                      <div className="absolute inset-0 rounded-xl bg-linear-to-r from-blue-500 to-indigo-600 opacity-0 group-hover:opacity-10 transition-opacity duration-300"></div>
                     )}
                   </Link>
                 ))}
               </nav>
 
-              {/* Admin Login Button */}
+              {/* Admin entry_255081 Button */}
               <div className="hidden lg:flex items-center space-x-4">
                 <Link
-                  to="/admin/login"
-                  className="group relative inline-flex items-center px-6 py-3 border border-transparent text-sm font-semibold rounded-xl text-white bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-600 hover:to-teal-700 transition-all duration-300 shadow-lg shadow-emerald-500/25 hover:shadow-xl hover:shadow-emerald-500/30 hover:scale-105"
+                  to="/admin/entry_255081"
+                  className="group relative inline-flex items-center px-6 py-3 border border-transparent text-sm font-semibold rounded-xl text-white bg-linear-to-r from-emerald-500 to-teal-600 hover:from-emerald-600 hover:to-teal-700 transition-all duration-300 shadow-lg shadow-emerald-500/25 hover:shadow-xl hover:shadow-emerald-500/30 hover:scale-105"
                 >
                   <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
@@ -172,7 +172,7 @@ export default function PublicLayout() {
                       to={item.href}
                       className={`group flex items-center space-x-3 px-4 py-3 rounded-xl text-base font-semibold transition-all duration-300 ${
                         isActive(item.href)
-                          ? 'bg-gradient-to-r from-blue-500 to-indigo-600 text-white shadow-lg'
+                          ? 'bg-linear-to-r from-blue-500 to-indigo-600 text-white shadow-lg'
                           : 'text-gray-700 hover:text-blue-600 hover:bg-blue-50/80'
                       }`}
                       onClick={() => setMobileMenuOpen(false)}
@@ -186,8 +186,8 @@ export default function PublicLayout() {
                     </Link>
                   ))}
                   <Link
-                    to="/admin/login"
-                    className="flex items-center justify-center space-x-2 px-4 py-3 mt-4 text-center bg-gradient-to-r from-emerald-500 to-teal-600 text-white rounded-xl font-semibold hover:from-emerald-600 hover:to-teal-700 transition-all duration-300 shadow-lg"
+                    to="/admin/entry_255081"
+                    className="flex items-center justify-center space-x-2 px-4 py-3 mt-4 text-center bg-linear-to-r from-emerald-500 to-teal-600 text-white rounded-xl font-semibold hover:from-emerald-600 hover:to-teal-700 transition-all duration-300 shadow-lg"
                     onClick={() => setMobileMenuOpen(false)}
                   >
                     <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -209,7 +209,7 @@ export default function PublicLayout() {
 
       {/* Footer (hidden on Home) */}
 {!isHome && (
-    <footer className="relative bg-gradient-to-br from-[#0f1724] via-[#111827] to-[#07121a] text-white mt-16 sm:mt-20 overflow-hidden">
+    <footer className="relative bg-linear-to-br from-[#0f1724] via-[#111827] to-[#07121a] text-white mt-16 sm:mt-20 overflow-hidden">
 
       {/* Subtle Background Pattern - BEHIND content */}
       <div className="absolute inset-0 pointer-events-none -z-10">
@@ -271,21 +271,21 @@ export default function PublicLayout() {
             <span className="text-base sm:text-lg font-bold text-white border-b-2 border-blue-500 inline-block pb-2">Support</span>
             <div className="space-y-3 sm:space-y-4">
               <a href="mailto:support@stGregvoting.com" className="flex items-start space-x-3 text-white transition-colors duration-300 group text-sm sm:text-base">
-                <svg className="w-5 h-5 text-white mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="w-5 h-5 text-white mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                 </svg>
                 <span className="break-all font-medium text-white">support@stGregvoting.com</span>
               </a>
 
               <div className="flex items-start space-x-3 text-white text-sm sm:text-base">
-                <svg className="w-5 h-5 text-white mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="w-5 h-5 text-white mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
                 <span className="font-medium text-white">24/7 Support Available</span>
               </div>
 
               <div className="flex items-start space-x-3 text-white text-sm sm:text-base">
-                <svg className="w-5 h-5 text-white mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="w-5 h-5 text-white mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
                 </svg>
                 <span className="font-medium text-white">Secure & Verified</span>
@@ -312,7 +312,7 @@ export default function PublicLayout() {
                   <a 
                     href="#" 
                     aria-label="Instagram" 
-                    className="w-9 h-9 sm:w-10 sm:h-10 bg-white/10 hover:bg-gradient-to-br hover:from-purple-500 hover:to-pink-500 backdrop-blur-sm rounded-lg flex items-center justify-center transition-all duration-300 hover:scale-110 border border-white/20"
+                    className="w-9 h-9 sm:w-10 sm:h-10 bg-white/10 hover:bg-linear-to-br hover:from-purple-500 hover:to-pink-500 backdrop-blur-sm rounded-lg flex items-center justify-center transition-all duration-300 hover:scale-110 border border-white/20"
                   >
                     <FaInstagram className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
                   </a>

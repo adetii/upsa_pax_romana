@@ -19,7 +19,7 @@ export default function AdminLayout() {
   useEffect(() => {
     if (!authLoading) {
       if (!user) {
-        navigate('/admin/login')
+        navigate('/admin/entry_255081')
         return
       }
       setAdminName(user?.name || '')
@@ -53,7 +53,7 @@ export default function AdminLayout() {
     } finally {
       setUser(null)
       toast.success('Logged out successfully')
-      navigate('/admin/login')
+      navigate('/admin/entry_255081')
     }
   }
 

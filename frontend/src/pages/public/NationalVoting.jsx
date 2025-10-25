@@ -12,8 +12,6 @@ export default function NationalVoting() {
   const [phone, setPhone] = useState('')
   const [loading, setLoading] = useState(false)
   const [voteCounts, setVoteCounts] = useState({})
-  const [categories, setCategories] = useState([])
-  const [selectedCategory, setSelectedCategory] = useState('')
   const [selectedPosition, setSelectedPosition] = useState('')
   const [votingStatus, setVotingStatus] = useState(null)
   const [votingLocked, setVotingLocked] = useState(false)
@@ -34,9 +32,6 @@ export default function NationalVoting() {
         toast.error('National category not found')
         return
       }
-      
-      // Only set the National category in the categories state
-      setCategories([nationalCategory])
       
       const categoryPositions = await api.positionsByCategory(nationalCategory.id)
       const positionsWithCategory = categoryPositions.map(position => ({
@@ -103,20 +98,11 @@ export default function NationalVoting() {
 
   // Filtering logic
   const filteredPositions = positions.filter(position => {
-    if (selectedCategory && position.category_id !== selectedCategory) {
-      return false
-    }
     if (selectedPosition && position.name !== selectedPosition) {
       return false
     }
     return true
   })
-
-  // Get positions for the selected category
-  const getPositionsForCategory = () => {
-    if (!selectedCategory) return positions
-    return positions.filter(position => position.category_id === selectedCategory)
-  }
 
   const togglePosition = async (position) => {
     const isExpanded = expandedPositions.has(position.id)
@@ -202,7 +188,7 @@ export default function NationalVoting() {
 
   if (loading && positions.length === 0) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-purple-50 to-blue-50 flex items-center justify-center">
+      <div className="min-h-screen bg-linear-to-br from-purple-50 to-blue-50 flex items-center justify-center">
         <div className="text-center">
           <div className="animate-spin rounded-full h-16 w-16 border-4 border-purple-200 border-t-purple-600 mx-auto mb-4"></div>
           <p className="text-gray-600 text-lg font-medium">Loading voting data...</p>
@@ -212,16 +198,16 @@ export default function NationalVoting() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-50 via-blue-50 to-indigo-50">
+    <div className="min-h-screen bg-linear-to-br from-purple-50 via-blue-50 to-indigo-50">
       {/* Header */}
       <div className="bg-white shadow-sm border-b border-gray-200 sticky top-0 z-10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
             <div>
-              <h1 className="text-3xl sm:text-4xl font-bold bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">
+              <h1 className="text-3xl sm:text-4xl font-bold bg-linear-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">
                 National Elections
               </h1>
-              <p className="text-gray-600 mt-1">Cast your vote • GHC 1 per vote</p>
+              <p className="text-gray-600 mt-1">Cast your vote • GH₵ 1 per vote</p>
             </div>
           </div>
         </div>
@@ -232,7 +218,7 @@ export default function NationalVoting() {
         {votingLocked && (
           <div className="bg-red-50 border-l-4 border-red-400 p-6 rounded-lg">
             <div className="flex items-center">
-              <div className="flex-shrink-0">
+              <div className="shrink-0">
                 <svg className="h-6 w-6 text-red-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.732 16.5c-.77.833.192 2.5 1.732 2.5z" />
                 </svg>
@@ -258,28 +244,6 @@ export default function NationalVoting() {
             Filter Candidates
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {/* Category Filter */}
-            <div>
-              <label className="block text-sm font-semibold text-gray-700 mb-2">
-                Filter by Category
-              </label>
-              <select
-                value={selectedCategory}
-                onChange={(e) => {
-                  setSelectedCategory(e.target.value)
-                  setSelectedPosition('') // Reset position when category changes
-                }}
-                className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white"
-              >
-                <option value="">All Categories</option>
-                {categories.map((category) => (
-                  <option key={category.id} value={category.id}>
-                    {category.name}
-                  </option>
-                ))}
-              </select>
-            </div>
-
             {/* Position Filter */}
             <div>
               <label className="block text-sm font-semibold text-gray-700 mb-2">
@@ -291,7 +255,7 @@ export default function NationalVoting() {
                 className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white"
               >
                 <option value="">All Positions</option>
-                {getPositionsForCategory().map((position) => (
+                {positions.map((position) => (
                   <option key={position.id} value={position.name}>
                     {position.name} ({position.category_name})
                   </option>
@@ -301,11 +265,10 @@ export default function NationalVoting() {
           </div>
           
           {/* Clear Filters */}
-          {(selectedCategory || selectedPosition) && (
+          {(selectedPosition) && (
             <div className="mt-4">
               <button
                 onClick={() => {
-                  setSelectedCategory('')
                   setSelectedPosition('')
                 }}
                 className="inline-flex items-center gap-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 text-gray-700 font-medium rounded-lg transition-colors text-sm"
@@ -441,7 +404,7 @@ export default function NationalVoting() {
                                 className="bg-white rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden border-2 border-gray-100 hover:border-blue-200 group"
                               >
                                 {/* Candidate Photo */}
-                                <div className="relative h-64 bg-gradient-to-br from-blue-100 to-indigo-100 overflow-hidden">
+                                <div className="relative h-64 bg-linear-to-br from-blue-100 to-indigo-100 overflow-hidden">
                                   {candidate.photo_url ? (
                                     <img
                                       src={getImageUrl(candidate.photo_url)}
@@ -531,7 +494,7 @@ export default function NationalVoting() {
                                   </div>
 
                                   {/* Total Cost */}
-                                  <div className="bg-gradient-to-r from-blue-100 to-indigo-100 rounded-xl p-4 text-center mb-4">
+                                  <div className="bg-linear-to-r from-blue-100 to-indigo-100 rounded-xl p-4 text-center mb-4">
                                     <p className="text-sm text-gray-600 mb-1">Total Cost</p>
                                     <p className="text-3xl font-bold text-blue-700">GH₵{totalCost.toFixed(2)}</p>
                                   </div>
@@ -543,7 +506,7 @@ export default function NationalVoting() {
                                     className={`w-full font-bold py-4 rounded-xl shadow-lg hover:shadow-xl transition-all disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:shadow-lg text-lg ${
                                       votingLocked 
                                         ? 'bg-gray-400 text-gray-700' 
-                                        : 'bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white'
+                                        : 'bg-linear-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white'
                                     }`}
                                   >
                                     {votingLocked ? (

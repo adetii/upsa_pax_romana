@@ -143,8 +143,8 @@ export default function AdminDashboard() {
     <div ref={containerRef} className="min-h-screen bg-gray-50 relative overflow-auto">      
       <div className="space-y-8">
         {/* Welcome Section */}
-        <div className="relative overflow-hidden bg-gradient-to-br from-blue-600 via-blue-700 to-indigo-800 rounded-3xl shadow-2xl">
-          <div className="absolute inset-0 bg-gradient-to-r from-blue-600/20 to-purple-600/20 backdrop-blur-3xl"></div>
+        <div className="relative overflow-hidden bg-linear-to-br from-blue-600 via-blue-700 to-indigo-800 rounded-3xl shadow-2xl">
+          <div className="absolute inset-0 bg-linear-to-r from-blue-600/20 to-purple-600/20 backdrop-blur-3xl"></div>
           <div className="absolute top-0 right-0 -mt-4 -mr-16 w-32 h-32 bg-white/10 rounded-full blur-3xl"></div>
           <div className="absolute bottom-0 left-0 -mb-8 -ml-8 w-24 h-24 bg-white/5 rounded-full blur-2xl"></div>
           
@@ -195,7 +195,7 @@ export default function AdminDashboard() {
         {error && (
           <div className="bg-red-50 border border-red-200 rounded-2xl p-6 shadow-lg">
             <div className="flex items-start space-x-4">
-              <div className="flex-shrink-0">
+              <div className="shrink-0">
                 <div className="w-10 h-10 bg-red-100 rounded-full flex items-center justify-center">
                   <svg className="h-6 w-6 text-red-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -219,10 +219,10 @@ export default function AdminDashboard() {
         {/* Stats Cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
           <div className="group relative overflow-hidden bg-white rounded-3xl p-8 shadow-lg hover:shadow-2xl transition-all duration-500 border border-gray-100 hover:border-blue-200">
-            <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-blue-500/10 to-blue-600/5 rounded-full -mr-16 -mt-16 group-hover:scale-110 transition-transform duration-500"></div>
+            <div className="absolute top-0 right-0 w-32 h-32 bg-linear-to-br from-blue-500/10 to-blue-600/5 rounded-full -mr-16 -mt-16 group-hover:scale-110 transition-transform duration-500"></div>
             <div className="relative">
               <div className="flex items-center justify-between mb-6">
-                <div className="p-4 bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl shadow-lg group-hover:shadow-blue-500/25 group-hover:scale-110 transition-all duration-300">
+                <div className="p-4 bg-linear-to-br from-blue-500 to-blue-600 rounded-2xl shadow-lg group-hover:shadow-blue-500/25 group-hover:scale-110 transition-all duration-300">
                   <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
                   </svg>
@@ -245,10 +245,10 @@ export default function AdminDashboard() {
           </div>
 
           <div className="group relative overflow-hidden bg-white rounded-3xl p-8 shadow-lg hover:shadow-2xl transition-all duration-500 border border-gray-100 hover:border-amber-200">
-            <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-amber-500/10 to-orange-600/5 rounded-full -mr-16 -mt-16 group-hover:scale-110 transition-transform duration-500"></div>
+            <div className="absolute top-0 right-0 w-32 h-32 bg-linear-to-br from-amber-500/10 to-orange-600/5 rounded-full -mr-16 -mt-16 group-hover:scale-110 transition-transform duration-500"></div>
             <div className="relative">
               <div className="flex items-center justify-between mb-6">
-                <div className="p-4 bg-gradient-to-br from-amber-500 to-orange-500 rounded-2xl shadow-lg group-hover:shadow-amber-500/25 group-hover:scale-110 transition-all duration-300">
+                <div className="p-4 bg-linear-to-br from-amber-500 to-orange-500 rounded-2xl shadow-lg group-hover:shadow-amber-500/25 group-hover:scale-110 transition-all duration-300">
                   <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                   </svg>
@@ -264,17 +264,17 @@ export default function AdminDashboard() {
               </div>
               <div>
                 <p className="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-2">Total Revenue</p>
-                <p className="text-4xl font-bold text-gray-900 mb-1">GHC {stats?.total_revenue || 0}</p>
+                <p className="text-4xl font-bold text-gray-900 mb-1">GH₵ {stats?.total_revenue || 0}</p>
                 <p className="text-sm text-gray-600">Revenue generated</p>
               </div>
             </div>
           </div>
 
           <div className="group relative overflow-hidden bg-white rounded-3xl p-8 shadow-lg hover:shadow-2xl transition-all duration-500 border border-gray-100 hover:border-emerald-200">
-            <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-emerald-500/10 to-green-600/5 rounded-full -mr-16 -mt-16 group-hover:scale-110 transition-transform duration-500"></div>
+            <div className="absolute top-0 right-0 w-32 h-32 bg-linear-to-br from-emerald-500/10 to-green-600/5 rounded-full -mr-16 -mt-16 group-hover:scale-110 transition-transform duration-500"></div>
             <div className="relative">
               <div className="flex items-center justify-between mb-6">
-                <div className="p-4 bg-gradient-to-br from-emerald-500 to-green-500 rounded-2xl shadow-lg group-hover:shadow-emerald-500/25 group-hover:scale-110 transition-all duration-300">
+                <div className="p-4 bg-linear-to-br from-emerald-500 to-green-500 rounded-2xl shadow-lg group-hover:shadow-emerald-500/25 group-hover:scale-110 transition-all duration-300">
                   <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0z" />
                   </svg>
@@ -297,10 +297,10 @@ export default function AdminDashboard() {
           </div>
 
           <div className="group relative overflow-hidden bg-white rounded-3xl p-8 shadow-lg hover:shadow-2xl transition-all duration-500 border border-gray-100 hover:border-purple-200">
-            <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-purple-500/10 to-indigo-600/5 rounded-full -mr-16 -mt-16 group-hover:scale-110 transition-transform duration-500"></div>
+            <div className="absolute top-0 right-0 w-32 h-32 bg-linear-to-br from-purple-500/10 to-indigo-600/5 rounded-full -mr-16 -mt-16 group-hover:scale-110 transition-transform duration-500"></div>
             <div className="relative">
               <div className="flex items-center justify-between mb-6">
-                <div className="p-4 bg-gradient-to-br from-purple-500 to-indigo-500 rounded-2xl shadow-lg group-hover:shadow-purple-500/25 group-hover:scale-110 transition-all duration-300">
+                <div className="p-4 bg-linear-to-br from-purple-500 to-indigo-500 rounded-2xl shadow-lg group-hover:shadow-purple-500/25 group-hover:scale-110 transition-all duration-300">
                   <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
                   </svg>
@@ -325,7 +325,7 @@ export default function AdminDashboard() {
 
         {/* Quick Actions */}
         <div className="bg-white rounded-3xl shadow-lg border border-gray-100 overflow-hidden">
-          <div className="px-8 py-6 border-b border-gray-100 bg-gradient-to-r from-gray-50 to-blue-50">
+          <div className="px-8 py-6 border-b border-gray-100 bg-linear-to-r from-gray-50 to-blue-50">
             <div className="flex items-center justify-between">
               <div>
                 <h2 className="text-2xl font-bold text-gray-900">Quick Actions</h2>
@@ -344,7 +344,7 @@ export default function AdminDashboard() {
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
               <button
                 onClick={() => navigate('/admin/candidates')}
-                className="group relative overflow-hidden p-8 bg-gradient-to-br from-blue-50 via-blue-50 to-blue-100 hover:from-blue-100 hover:to-blue-200 rounded-3xl transition-all duration-500 hover:shadow-xl hover:shadow-blue-500/10 border border-blue-200/50 hover:border-blue-300"
+                className="group relative overflow-hidden p-8 bg-linear-to-br from-blue-50 via-blue-50 to-blue-100 hover:from-blue-100 hover:to-blue-200 rounded-3xl transition-all duration-500 hover:shadow-xl hover:shadow-blue-500/10 border border-blue-200/50 hover:border-blue-300"
               >
                 <div className="absolute top-0 right-0 w-20 h-20 bg-blue-500/10 rounded-full -mr-10 -mt-10 group-hover:scale-150 transition-transform duration-500"></div>
                 <div className="relative flex flex-col items-center text-center">
@@ -360,7 +360,7 @@ export default function AdminDashboard() {
 
               <button
                 onClick={() => navigate('/admin/positions')}
-                className="group relative overflow-hidden p-8 bg-gradient-to-br from-emerald-50 via-emerald-50 to-emerald-100 hover:from-emerald-100 hover:to-emerald-200 rounded-3xl transition-all duration-500 hover:shadow-xl hover:shadow-emerald-500/10 border border-emerald-200/50 hover:border-emerald-300"
+                className="group relative overflow-hidden p-8 bg-linear-to-br from-emerald-50 via-emerald-50 to-emerald-100 hover:from-emerald-100 hover:to-emerald-200 rounded-3xl transition-all duration-500 hover:shadow-xl hover:shadow-emerald-500/10 border border-emerald-200/50 hover:border-emerald-300"
               >
                 <div className="absolute top-0 right-0 w-20 h-20 bg-emerald-500/10 rounded-full -mr-10 -mt-10 group-hover:scale-150 transition-transform duration-500"></div>
                 <div className="relative flex flex-col items-center text-center">
@@ -376,7 +376,7 @@ export default function AdminDashboard() {
 
               <button
                 onClick={() => navigate('/admin/results')}
-                className="group relative overflow-hidden p-8 bg-gradient-to-br from-purple-50 via-purple-50 to-purple-100 hover:from-purple-100 hover:to-purple-200 rounded-3xl transition-all duration-500 hover:shadow-xl hover:shadow-purple-500/10 border border-purple-200/50 hover:border-purple-300"
+                className="group relative overflow-hidden p-8 bg-linear-to-br from-purple-50 via-purple-50 to-purple-100 hover:from-purple-100 hover:to-purple-200 rounded-3xl transition-all duration-500 hover:shadow-xl hover:shadow-purple-500/10 border border-purple-200/50 hover:border-purple-300"
               >
                 <div className="absolute top-0 right-0 w-20 h-20 bg-purple-500/10 rounded-full -mr-10 -mt-10 group-hover:scale-150 transition-transform duration-500"></div>
                 <div className="relative flex flex-col items-center text-center">
@@ -392,7 +392,7 @@ export default function AdminDashboard() {
 
               <button
                 onClick={() => navigate('/admin/transactions')}
-                className="group relative overflow-hidden p-8 bg-gradient-to-br from-amber-50 via-amber-50 to-amber-100 hover:from-amber-100 hover:to-amber-200 rounded-3xl transition-all duration-500 hover:shadow-xl hover:shadow-amber-500/10 border border-amber-200/50 hover:border-amber-300"
+                className="group relative overflow-hidden p-8 bg-linear-to-br from-amber-50 via-amber-50 to-amber-100 hover:from-amber-100 hover:to-amber-200 rounded-3xl transition-all duration-500 hover:shadow-xl hover:shadow-amber-500/10 border border-amber-200/50 hover:border-amber-300"
               >
                 <div className="absolute top-0 right-0 w-20 h-20 bg-amber-500/10 rounded-full -mr-10 -mt-10 group-hover:scale-150 transition-transform duration-500"></div>
                 <div className="relative flex flex-col items-center text-center">
@@ -411,7 +411,7 @@ export default function AdminDashboard() {
 
         {/* Recent Transactions */}
         <div className="bg-white rounded-3xl shadow-lg border border-gray-100 overflow-hidden">
-          <div className="px-8 py-6 border-b border-gray-100 bg-gradient-to-r from-gray-50 to-blue-50">
+          <div className="px-8 py-6 border-b border-gray-100 bg-linear-to-r from-gray-50 to-blue-50">
             <div className="flex items-center justify-between">
               <div>
                 <h3 className="text-2xl font-bold text-gray-900">Recent Transactions</h3>
@@ -451,7 +451,7 @@ export default function AdminDashboard() {
                         <p className="text-sm text-gray-600">{transaction.position_name}</p>
                       </div>
                       <div className="text-right ml-4">
-                        <p className="font-bold text-gray-900 text-lg">GHC {transaction.amount}</p>
+                        <p className="font-bold text-gray-900 text-lg">GH₵ {transaction.amount}</p>
                         <span className={`inline-flex px-3 py-1 text-xs font-semibold rounded-full border ${getStatusColor(transaction.status)}`}>
                           {transaction.status}
                         </span>
@@ -488,7 +488,7 @@ export default function AdminDashboard() {
                           </div>
                         </td>
                         <td className="px-8 py-6 whitespace-nowrap text-sm text-gray-900 font-medium">{transaction.position_name}</td>
-                        <td className="px-8 py-6 whitespace-nowrap text-sm font-bold text-gray-900">GHC {transaction.amount}</td>
+                        <td className="px-8 py-6 whitespace-nowrap text-sm font-bold text-gray-900">GH₵ {transaction.amount}</td>
                         <td className="px-8 py-6 whitespace-nowrap">
                           <span className={`inline-flex px-3 py-1 text-xs font-semibold rounded-full border ${getStatusColor(transaction.status)}`}>
                             {transaction.status}
