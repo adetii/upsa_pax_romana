@@ -1,24 +1,23 @@
-app = "upsa-pax-romana"
-primary_region = "iad"
+# fly.toml app configuration file generated for upsapaxromana on 2025-10-25T01:25:06Z
+#
+# See https://fly.io/docs/reference/configuration/ for information about how to use this file.
+#
+
+app = 'upsapaxromana'
+primary_region = 'iad'
 
 [build]
 
 [http_service]
   internal_port = 8080
   force_https = true
-  auto_stop_machines = "stop"
+  auto_stop_machines = 'stop'
   auto_start_machines = true
   min_machines_running = 0
-  processes = ["app"]
-
-[env]
-  APP_ENV = "production"
-  APP_DEBUG = "false"
-  LOG_CHANNEL = "stderr"
-  SESSION_DRIVER = "database"
-  CACHE_DRIVER = "database"
+  processes = ['app']
 
 [[vm]]
-  memory = "256mb"
-  cpu_kind = "shared"
-  cpus = 1
+  memory = '256mb'
+  cpu_kind = 'shared'
+  cpus = 8
+  memory_mb = 2048
